@@ -13,6 +13,6 @@ int main() {
 	}
 	if( n%10 > 0 ) {
 		for( int i=1; i<=n%10; i++ ) cout << i;
-	} 
+	}
 	return 0;
 }

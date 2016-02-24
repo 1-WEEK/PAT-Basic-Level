@@ -27,9 +27,9 @@ int sayYes( char ca[] ) {
     int flagP = -1,
         flagT = -1,
         isYes =  1, i;
-    
+
     for( i=0; i<100 && ca[i]!='\0'; i++) {
-//        规则一 与 二 判断 
+//        规则一 与 二 判断
         if( ca[i]!='P' && ca[i]!='A' && ca[i]!='T' ) return 0;
         else {
             if( ca[i]=='P' ) {
@@ -46,7 +46,7 @@ int sayYes( char ca[] ) {
         b = flagT - flagP - 2,
         c = i - flagT - a -1;
     if( a<0 || b<0 || c<0 ) return 0;
-//    按照规则三还原字符串 
+//    按照规则三还原字符串
     if( b > 0 ) {
         char temp[100] = {};
         for(int j=0; j<a; j++ ) {
@@ -60,10 +60,10 @@ int sayYes( char ca[] ) {
         for(int j=0; j<c; j++ ) {
             temp[j+flagT] = 'A';
         }
-//        递归 
+//        递归
         isYes = sayYes(temp);
     }
-    
+
     return isYes;
 }
 

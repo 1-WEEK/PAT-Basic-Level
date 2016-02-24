@@ -25,23 +25,23 @@ class cNum {
 };
 
 int main() {
-//	输入 
+//	输入
 	int n, coun = 0;
 	cin >> n;
 	cNum cn[n];
 	int a[n];
 	for( int i=0; i<n; i++ ) {
-		int temp; 
+		int temp;
 		cin >> temp;
 		cn[i].setNum( temp );
 		cn[i].setCount( fun1(temp) );
 	}
-	
-//	覆盖的数组 
+
+//	覆盖的数组
 	for( int i=0; i<n; i++ ) {
 		fun3( cn[i].getNum(), cn[i].getP() );
 	}
-	
+
 	for( int i=0; i<n; i++) {
 		for( int j=0; j<n; j++ ) {
 			if(i==j) continue;
@@ -100,7 +100,7 @@ void PopSort( int * p, int n ) {
 		}
 	}
 }
-//	判断奇数偶数 
+//	判断奇数偶数
 bool fun2(int num) {
     if( num%2==0 ) return true;
     else return false;
@@ -115,13 +115,13 @@ int fun1(int num) {
         cout ++;
     }
     return cout;
-} 	
+}
 
 bool judge( int num, int *p, int count ) {
 	for(int i=0; i<count; i++ ) {
 		if( num==*(p+i) ) return true;
 	}
-	return false; 
+	return false;
 }
 
 void fun3( int num, int * p ) {
@@ -134,6 +134,6 @@ void fun3( int num, int * p ) {
         else {
         	num = (3*num+1)/2;
         	*(p+i++) = num;
-        } 
+        }
     }
 }
