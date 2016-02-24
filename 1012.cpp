@@ -22,16 +22,16 @@ int main() {
 	a3 = A3( a, n);
 	a4 = A4( a, n);
 	a5 = A5( a, n);
-	
-	if( a1 == -1) cout << "N "; 
+
+	if( a1 == -1) cout << "N ";
     else cout << a1 << " ";
-    if( a2 == -1) cout << "N "; 
+    if( a2 == -1) cout << "N ";
     else cout << a2 << " ";
-    if( a3 == -1) cout << "N "; 
+    if( a3 == -1) cout << "N ";
     else cout << a3 << " ";
-    if( a4 == -1) cout << "N "; 
+    if( a4 == -1) cout << "N ";
     else cout << fixed << setprecision(1) << a4 << " ";
-    if( a5 == -1) cout << "N"; 
+    if( a5 == -1) cout << "N";
     else cout << a5;
 	return 0;
 }
@@ -74,7 +74,7 @@ float A4( int a[], int n) {
 		}
 	}
 	if( count == 0) return -1;
-	return sum/count;	
+	return sum/count;
 }
 
 int A5( int a[], int n) {

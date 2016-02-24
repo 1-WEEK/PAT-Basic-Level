@@ -8,10 +8,10 @@ class student {
 private:
     int c, d, sum, id, group;
 public:
-    void init( int, int, int, int, int); 
+    void init( int, int, int, int, int);
     void print();
     int getD()     { return d;}
-    int getSum()   { return sum;} 
+    int getSum()   { return sum;}
     int getId()    { return id;}
     int getGroup() { return group;}
 };
@@ -19,21 +19,21 @@ public:
 void swap  ( int *, int *);
 int  gCount( int, student *, int);
 void sortPrint( int, student *, int);
-bool compare(student a,student b) //??a?b????true,??a?b??  
-{  
-    if(a.getSum()>b.getSum())  
-        return true;  
-    else if(a.getSum() == b.getSum())  
-    {  
-        if(a.getD()>b.getD())  
-            return true;  
-        else if(a.getD()==b.getD())  
-        {  
-            if(a.getId()<b.getId())  
-                return true;  
-        }  
-    }  
-    return false;  
+bool compare(student a,student b) //??a?b????true,??a?b??
+{
+    if(a.getSum()>b.getSum())
+        return true;
+    else if(a.getSum() == b.getSum())
+    {
+        if(a.getD()>b.getD())
+            return true;
+        else if(a.getD()==b.getD())
+        {
+            if(a.getId()<b.getId())
+                return true;
+        }
+    }
+    return false;
 }
 
 int main() {
