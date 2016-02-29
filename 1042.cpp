@@ -1,30 +1,20 @@
 #include <iostream>
+#include <stdio.h>
 using namespace std;
-
-struct word{
-	char c;
-	int n;
-};
+int count[128];
 
 int main() {
-	char C;
-	word x[26];
-	for(int i=0; i<26; ++i) {
-		x[i].c = (char)('a'+i);
-		x[i].n = 0;
+	char c;
+	while ((c=getchar()) != '\n') {
+		++count[c];
 	}
-	while((C = cin.get()) != EOF ) {
-		if( C > 'A' && C < 'Z') C += 'a' - 'A';
-		if( C > 'a' && C < 'z')
-			for(int i=0; i<26; ++i)
-				if( C == x[i].c) {
-					++x[i].n;break;
-				}
+	int max = 0, i;
+	for (i='A'; i<='Z'; ++i)
+		count[i-'A'+'a'] += count[i];
+	for (i='a'; i<='z'; ++i) {
+		if (count[max] < count[i]) max = i;
 	}
-	word max = x[0];
-	for(int i=1; i<26; ++i) {
-		if(max.n < x[i].n) max = x[i];
-	}
-	cout << max.c << " " << max.n;
+	cout << (char)max << " " << count[max];
+//	printf("%c %d", max, count[max]);
 	return 0;
 }

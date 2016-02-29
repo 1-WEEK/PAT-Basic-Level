@@ -24,4 +24,4 @@ int main() {
 			if(a[i] == s[j].testNum) cout << s[j].examId << " " << s[j].examNum << endl;
 	}
 	return 0;
-} 
+}
