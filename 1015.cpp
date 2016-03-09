@@ -1,95 +1,67 @@
-#include <iostream>
+#include <vector>
 #include <cstdio>
 #include <algorithm>
 using namespace std;
-const int IDTYPE = 8;
-
-class student {
-private:
-    int c, d, sum, id, group;
-public:
-    void init( int, int, int, int, int);
-    void print();
-    int getD()     { return d;}
-    int getSum()   { return sum;}
-    int getId()    { return id;}
-    int getGroup() { return group;}
+struct student {
+    int kaohao;
+    int defen;
+    int caifen;
+    int zongfen;
 };
-
-void swap  ( int *, int *);
-int  gCount( int, student *, int);
-void sortPrint( int, student *, int);
-bool compare(student a,student b) //??a?b????true,??a?b??
-{
-    if(a.getSum()>b.getSum())
+bool compare(student a,student b) { //比较a在b前则返回true,表示a在b前面
+    if(a.zongfen>b.zongfen)
         return true;
-    else if(a.getSum() == b.getSum())
-    {
-        if(a.getD()>b.getD())
+    else if(a.zongfen == b.zongfen) {
+        if(a.defen>b.defen)
             return true;
-        else if(a.getD()==b.getD())
-        {
-            if(a.getId()<b.getId())
+        else if(a.defen==b.defen) {
+            if(a.kaohao<b.kaohao)
                 return true;
         }
     }
     return false;
 }
-
 int main() {
-    int tempC, tempD, tempId, n, l, h;
-    cin >> n >> l >> h;
-    student s[n], * ps;
-    ps = s;
-    for( int i = 0; i < n; ++i) {
-        cin >> tempId >> tempD >> tempC;
-        s[i].init( tempId, tempD, tempC, l, h);
+    vector<student> v1,v2,v3,v4;//表示四类考生
+    student stu;//学生信息临时保存
+    int count=0;//达标的学生总数
+    int N,L,H;
+    //cin>>N>>L>>H;
+    scanf("%d %d %d",&N,&L,&H);
+    int K,D,C;
+    while(N--) {
+        //cin>>K>>D>>C;
+        scanf("%d%d%d",&K,&D,&C);
+        stu.kaohao = K;
+        stu.defen = D;
+        stu.caifen = C;
+        stu.zongfen = D+C;
+        if(D>=L && C>=L) {
+            count++;
+            if(D>=H && C>=H)
+                v1.push_back(stu);
+            else if(D>=H && C<H )
+                v2.push_back(stu);
+            else if(D<H && C<H  && D>=C)
+                v3.push_back(stu);
+            else
+                v4.push_back(stu);
+        }
     }
-    cout << n - gCount( 0, ps, n) << endl;
-    for( int i = 1; i < 5; ++i)
-        sortPrint(i, ps, n);
+    printf("%d\n",count);
+    sort(v1.begin(),v1.end(),compare);
+    sort(v2.begin(),v2.end(),compare);
+    sort(v3.begin(),v3.end(),compare);
+    sort(v4.begin(),v4.end(),compare);
+    vector<student>::iterator itr;
+    for(itr=v1.begin();itr!=v1.end();itr++)
+        printf("%d %d %d\n",itr->kaohao,itr->defen,itr->caifen);
+    for(itr=v2.begin();itr!=v2.end();itr++)
+        printf("%d %d %d\n",itr->kaohao,itr->defen,itr->caifen);
+    for(itr=v3.begin();itr!=v3.end();itr++)
+        printf("%d %d %d\n",itr->kaohao,itr->defen,itr->caifen);
+    for(itr=v4.begin();itr!=v4.end();itr++)
+        printf("%d %d %d\n",itr->kaohao,itr->defen,itr->caifen);
+    system("pause");
     return 0;
-}
-
-void student::init( int Id, int dsore, int csore, int l, int h) {
-    this->id = Id;
-    this->d  = dsore;
-    this->c  = csore;
-    this->sum = d + c;
-    if( d>=l && c>=l) {
-        if( c>=h && d>=h) this->group = 1;
-        else if( d >= h)  this->group = 2;
-        else if( d >= c)  this->group = 3;
-        else              this->group = 4;
-    }
-    else this->group = 0;
-}
-void student::print() {
-    cout << id << " " << d << " " << c << endl;
-}
-
-int gCount( int g, student * s, int n) {
-    int count = 0;
-    for( int i = 0; i < n; ++i)
-        if( s[i].getGroup() == g) ++count;
-    return count;
-}
-
-void swap( int * a, int * b) {
-    int temp = *a;
-    *a = *b;
-    *b = temp;
-}
-
-void sortPrint( int g, student * s, int n) {
-    int count = gCount( g, s, n);
-    int a[count], t = 0;
-    for( int i = 0; i < n; ++i) {
-        if( s[i].getGroup() == g) a[t++] = i;
-    }
-
-    sort(s[a[0]],s[a[count]],compare);
-
-    for( int i = 0; i < count; ++i)
-        s[a[i]].print();
 }
