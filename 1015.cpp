@@ -8,7 +8,7 @@ struct student {
     int caifen;
     int zongfen;
 };
-bool compare(student a,student b) { //比较a在b前则返回true,表示a在b前面
+bool compare(student a,student b) { //姣旇緝a鍦╞鍓嶅垯杩斿洖true,琛ㄧずa鍦╞鍓嶉潰
     if(a.zongfen>b.zongfen)
         return true;
     else if(a.zongfen == b.zongfen) {
@@ -22,9 +22,9 @@ bool compare(student a,student b) { //比较a在b前则返回true,表示a在b前面
     return false;
 }
 int main() {
-    vector<student> v1,v2,v3,v4;//表示四类考生
-    student stu;//学生信息临时保存
-    int count=0;//达标的学生总数
+    vector<student> v1,v2,v3,v4;//琛ㄧず鍥涚被鑰冪敓
+    student stu;//瀛︾敓淇℃伅涓存椂淇濆瓨
+    int count=0;//杈炬爣鐨勫鐢熸�绘暟
     int N,L,H;
     //cin>>N>>L>>H;
     scanf("%d %d %d",&N,&L,&H);
