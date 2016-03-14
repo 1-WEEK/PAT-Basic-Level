@@ -1,73 +1,68 @@
 #include <iostream>
 #include <iomanip>
 using namespace std;
-
-// ¶¨Òå½Úµã£¬Ä£ÄâÄÚ´æ´´½¨Á´±í
+// å®šä¹‰èŠ‚ç‚¹ï¼Œæ¨¡æ‹Ÿå†…å­˜åˆ›å»ºé“¾è¡¨
 struct linkNode {
-	int Data, Next;
+    int Data, Next;
 } lNode[100000];
-
 void printList( int address);
 int  reverseList( int start, int end);
 int  fun( int start, int k);
-
 int main() {
-	int start; // ÆğÊ¼µØÖ·
-	int n, k;  // n ½ÚµãÊı£¬k
-	cin >> start >> n >> k;
-	for( int i = 0; i < n; ++i) {
-			int tempData, tempNext, tempAddress;
-			cin >> tempAddress;
-			cin >> lNode[tempAddress].Data >> lNode[tempAddress].Next;
-	}
-	if( start == -1) {
-		cout << -1;
-	}
-	else {
-		if( k > 1){
-			start = fun( start, k);
-		}
-		printList( start);
-	}
-	return 0;
+    int start; // èµ·å§‹åœ°å€
+    int n, k;  // n èŠ‚ç‚¹æ•°ï¼Œk
+    scanf("%d %d %d", &start, &n, &k);
+    for( int i = 0; i < n; ++i) {
+            int tempAddress;
+            scanf("%d", &tempAddress);
+            scanf("%d %d", &lNode[tempAddress].Data, &lNode[tempAddress].Next);
+    }
+    if( start == -1) {
+        printf("-1");
+    }
+    else {
+        if( k > 1){
+            start = fun( start, k);
+        }
+        printList( start);
+    }
+    return 0;
 }
-
-// ±éÀú´òÓ¡Á´±í
+// éå†æ‰“å°é“¾è¡¨
 void printList( int address) {
-	cout << setfill('0') << setw(5) << address << " "
-		 << lNode[address].Data << " ";
-	if( lNode[address].Next != -1)
-		cout << setfill('0') << setw(5) << lNode[address].Next << endl;
-	else {
-		cout << -1 << endl;
-		return;
-	}
-	printList( lNode[address].Next);
+    cout << setfill('0') << setw(5) << address << " "
+         << lNode[address].Data << " ";
+    if( lNode[address].Next != -1)
+        cout << setfill('0') << setw(5) << lNode[address].Next << endl;
+    else {
+        cout << -1 << endl;
+        return;
+    }
+    printList( lNode[address].Next);
 }
-// ¸ø¶¨Á´±íµÄ¿ªÍ·¼°½áÎ²Ö¸Ïò£¬½«Æä·­×ª
+// ç»™å®šé“¾è¡¨çš„å¼€å¤´åŠç»“å°¾æŒ‡å‘ï¼Œå°†å…¶ç¿»è½¬
 int reverseList( int start, int end) {
-	if( lNode[start].Next == end) return start;
-	int last = start;
-	for(;;) {
-		if( lNode[last].Next == end) break;
-		last = lNode[last].Next;
-	}
-	int temp = lNode[start].Next;
-	lNode[start].Next = end;
-	lNode[last].Next = start;
-	start = reverseList( temp, lNode[last].Next);
-	return start;
+    if( lNode[start].Next == end) return start;
+    int last = start;
+    for(;;) {
+        if( lNode[last].Next == end) break;
+        last = lNode[last].Next;
+    }
+    int temp = lNode[start].Next;
+    lNode[start].Next = end;
+    lNode[last].Next = start;
+    start = reverseList( temp, lNode[last].Next);
+    return start;
 }
-
 int fun( int s, int k) {
-	int i = 1, last = s;
-	while( i%k != 0) {
-		last = lNode[last].Next;
-		++i;
-		if( last == -1) return s;
-	}
-	int end = lNode[last].Next;
-	int start = reverseList( s, end);
-	lNode[s].Next = fun( end, k);
-	return start;
+    int i = 1, last = s;
+    while( i%k != 0) {
+        last = lNode[last].Next;
+        ++i;
+        if( last == -1) return s;
+    }
+    int end = lNode[last].Next;
+    int start = reverseList( s, end);
+    lNode[s].Next = fun( end, k);
+    return start;
 }
