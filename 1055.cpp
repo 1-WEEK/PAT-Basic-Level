@@ -40,6 +40,5 @@ int main()
             printf("\n");
         }
     }
-    else cout << endl;
     return 0;
 }
